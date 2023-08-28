@@ -1,7 +1,9 @@
+
 from azure.identity import DefaultAzureCredential
 from azure.mgmt.quota import QuotasClient
 from azure.mgmt.quota.models import RequestResponse
 from region_list import region_list
+
 # PREREQUISITES
 # pip install azure-identity
 # pip install azure-mgmt-quota
@@ -15,8 +17,9 @@ from region_list import region_list
 sub_id = input("Please add your subscription ID: ")
 region = input("Please add your quota region: ")
 family = input("Please add your quota family: ")
-value = int(input("Please add your quota value: "))  
-while family is 
+value = int(input("Please add your quota value: "))
+email = input("Please add your email address: ")  # Add this line to input the email address
+
 def main():
     client = QuotasClient(
         credential=DefaultAzureCredential(),
@@ -24,8 +27,9 @@ def main():
 
     create_quota_request = {
         "properties": {
-            "limit": {"limitObjectType": "LimitValue", "value": value},  # Use the 'value' variable
-            "name": {"value": family},  # Use the 'family' variable
+            "limit": {"limitObjectType": "LimitValue", "value": value},
+            "name": {"value": family},
+            "email": {"value": email}  # Add the email address to the request
         }
     }
 
